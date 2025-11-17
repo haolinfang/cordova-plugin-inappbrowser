@@ -709,7 +709,7 @@ public class InAppBrowser extends CordovaPlugin {
                 //Please, no more black!
                 toolbar.setBackgroundColor(toolbarColor);
                 if (hideToolbar) {
-                    toolbar.setVisibility(View.INVISIBLE);
+                    toolbar.setVisibility(View.GONE);
                 }
 
                 // Back button
