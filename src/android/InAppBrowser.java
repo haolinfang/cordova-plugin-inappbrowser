@@ -139,6 +139,7 @@ public class InAppBrowser extends CordovaPlugin {
     private boolean fullscreen = false;
     private String[] allowedSchemes;
     private InAppBrowserClient currentClient;
+    private boolean hideToolbar = false;
 
     /**
      * Executes the request and returns PluginResult.
@@ -672,6 +673,10 @@ public class InAppBrowser extends CordovaPlugin {
             if (fullscreenSet != null) {
                 fullscreen = fullscreenSet.equals("yes") ? true : false;
             }
+            String hideToolbarSet = features.get("hidetoolbar");
+            if (hideToolbarSet != null) {
+                hideToolbar = hideToolbarSet.equals("yes") ? true : false;
+            }
         }
 
         final CordovaWebView thatWebView = this.webView;
@@ -699,10 +704,21 @@ public class InAppBrowser extends CordovaPlugin {
                 dialog.setInAppBroswer(getInAppBrowser());
                 dialog.setContentView(R.layout.layout_wv);
 
+                Window window = dialog.getWindow();
+                if (window != null) {
+                    WindowManager.LayoutParams params = window.getAttributes();
+                    params.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN;
+                    window.setAttributes(params);
+                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                }
+
                 // Toolbar layout
                 RelativeLayout toolbar = dialog.findViewById(R.id.title_bar);
                 //Please, no more black!
                 toolbar.setBackgroundColor(toolbarColor);
+                if (hideToolbar) {
+                    toolbar.setVisibility(View.INVISIBLE);
+                }
 
                 // Back button
                 ImageButton back = dialog.findViewById(R.id.btn_back);
@@ -837,6 +853,7 @@ public class InAppBrowser extends CordovaPlugin {
                     .navigationBarColor(toolbarColorSet) //导航栏颜色，不写默认黑色
                     .navigationBarDarkIcon(true) //导航栏图标是深色，不写默认为亮色
                     .keyboardEnable(true)
+                    .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN) // 明确设置键盘模式
                     .init();
                 }
 
