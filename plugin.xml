@@ -52,6 +52,8 @@
 
         <!-- drawable src/android/resources -->
         <resource-file src="src/android/res/layout/layout_wv.xml" target="res/layout/layout_wv.xml" />
+        <resource-file src="src/android/res/drawable/back_left.xml" target="res/drawable/back_left.xml" />
+        <resource-file src="src/android/res/drawable/close_back.xml" target="res/drawable/close_back.xml" />
 
         <resource-file src="src/android/res/drawable-hdpi/ic_action_next_item.png" target="res/drawable-hdpi/ic_action_next_item.png" />
         <resource-file src="src/android/res/drawable-mdpi/ic_action_next_item.png" target="res/drawable-mdpi/ic_action_next_item.png" />

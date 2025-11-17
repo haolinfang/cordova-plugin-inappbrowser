@@ -27,7 +27,7 @@
       android:id="@+id/tv_title"
       android:layout_width="wrap_content"
       android:layout_height="match_parent"
-      android:text="Web View Title"
+      android:text=""
       android:textSize="14sp"
       android:textColor="@android:color/white"
       android:gravity="center"
