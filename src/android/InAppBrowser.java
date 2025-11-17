@@ -695,7 +695,7 @@ public class InAppBrowser extends CordovaPlugin {
                 // Let's create the main dialog
                 dialog = new InAppBrowserDialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
                 dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
-                dialog.getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_ADJUST_PAN);
+                dialog.getWindow().setSoftInputMode(LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 if (fullscreen) {
                     dialog.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -703,14 +703,6 @@ public class InAppBrowser extends CordovaPlugin {
                 dialog.setCancelable(true);
                 dialog.setInAppBroswer(getInAppBrowser());
                 dialog.setContentView(R.layout.layout_wv);
-
-                Window window = dialog.getWindow();
-                if (window != null) {
-                    WindowManager.LayoutParams params = window.getAttributes();
-                    params.softInputMode = WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN;
-                    window.setAttributes(params);
-                    window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-                }
 
                 // Toolbar layout
                 RelativeLayout toolbar = dialog.findViewById(R.id.title_bar);
@@ -853,7 +845,6 @@ public class InAppBrowser extends CordovaPlugin {
                     .navigationBarColor(toolbarColorSet) //导航栏颜色，不写默认黑色
                     .navigationBarDarkIcon(true) //导航栏图标是深色，不写默认为亮色
                     .keyboardEnable(true)
-                    .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN) // 明确设置键盘模式
                     .init();
                 }
 
